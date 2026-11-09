@@ -4,24 +4,54 @@ import { voituresElectriques} from "./voitures.js";
 
 // TODO 1-2 Créez la fonction ready
 $( function () {
-
-
+    
 // TODO 1-3
 //  - En jQuery, ajoutez l'entête du tableau (Marque, Modèle, Année, Couleur, Autonomie et Prix) à l'élément <table id="tableau-voitures"></table>
 //  - Ajoutez l'élément tbody avec l'id = "voiture", sera utile au prochain TO-DO
 
+    const tableauTitreEntete = ["Marque", "Modèle", "Année", "Couleur", "Autonomie", "Prix"];
+    tableauTitreEntete.reverse();
 
-// TODO 1-3
-//  - En jQuery, ajoutez l'entête du tableau (Marque, Modèle, Année, Couleur, Autonomie et Prix) à l'élément <table id="tableau-voitures"></table>
-//  - Ajoutez l'élément tbody avec l'id = "voiture", sera utile au prochain TO-DO
+    const tableauHead = $(document.createElement("thead"));
+    $("#tableau-voitures").prepend(tableauHead);
 
+    const tableauTR = $(document.createElement("tr"));
+    tableauHead.prepend(tableauTR);
 
-    const tableauTR = document.createElement("tr");
-    const tableauTH = document.createElement("th");
+    for (let i = 0; i < tableauTitreEntete.length ; i++) {
+        tableauTR.prepend(`<th>${tableauTitreEntete[i]}</th>`);
+    }
 
-    let table = document.getElementById()
 // TODO 1-4 En jQuery, ajoutez dans le tbody de la table, les tr et les td pour afficher toutes les données importées du fichier voitures.js
 //  avec un bouton "Supprimer", un bouton "Duppliquer" et un bouton "Ligne bleu" à la fin de la ligne.
+
+    const tableauTitreData = ["marque", "modele", "annee", "autonomie", "prix"];
+
+    const tableauBody = $(document.createElement("tbody"));
+    $(`#tableau-voitures`).append(tableauBody);
+
+       console.log(voituresElectriques[0]["modele"])
+
+    for (let i = 0; i < voituresElectriques.length; i++) {
+        const tableauTd = $(document.createElement("td"));
+        const tableauTrBody = $(document.createElement("tr"));
+
+        tableauTd.text(voituresElectriques[i]["marque"]);
+        tableauTrBody.append(tableauTd)
+        tableauBody.append(tableauTrBody);
+    }
+
+    for (let i = 0; i < voituresElectriques.length; i++) {
+        const tableauTd = $(document.createElement("td"));
+        const tableauTrBody = $(document.createElement("tr"));
+
+        for (let j = 0; j < tableauTitreData; j++) {
+
+            tableauTd.text(voituresElectriques[i][tableauTitreData[i]]);
+            tableauTrBody.append(tableauTd)
+            tableauBody.append(tableauTrBody);
+        }
+    }
 
 
 // TODO 1-5
@@ -49,6 +79,37 @@ $( function () {
 //  - Vous devez valider l'année (entre 2015 et 2027 inclusivement), l'autonomie (plus grand que 100 km),
 //    le prix (plus grand de 1000) et la couleur (BLANC, NOIR, BLEU, GRIS, ROUGE ou ARGENT) avant de les ajouter à la table
 
+    const form = document.getElementById("form-ajout-voiture")
+    form.addEventListener("submit", submit);
+
+    function submit(ev) {
+
+        const data = new FormData(form);
+        const couleursAttendues = ["Blanc", "Noir", "Bleu", "Gris", "Rouge", "Argent"];
+        let erreurs = false;
+        let listeErreurs = [];
+
+        if (!couleursAttendues.includes(data.get("couleur"))) {
+            listeErreurs.push("Erreur : La couleur doit être soit Blanc, Noir, Bleu, Gris, Rouge et Argent.");
+            erreurs = true;
+        }
+
+        if (data.get("autonomie") <= 100) {
+            //$("textarea[id='message-erreur']").value += "Erreur : l'autonomie doit être supérieure à 100km.";
+            listeErreurs.push("Erreur : l'autonomie doit être supérieure à 100km.");
+            erreurs = true;
+        }
+
+        if (data.get("prix") <= 1000) {
+            listeErreurs.push("Erreur : le prix doit être supérieur à 1000 $.");
+            erreurs = true;
+        }
+
+        if (erreurs) {
+            $('#message-erreur').val(listeErreurs.join("\n"));
+            ev.preventDefault();
+        }
+    }
 
 // TODO 1-10
 //  - Ajoutez une animation (autre que le shake du formatif) de votre choix avec animate lorsqu'il y a une erreur de validation

@@ -13,6 +13,7 @@
 </table>
 
 <form id="form-ajout-voiture">
+    <fieldset>
     <label for="marque">Marque :</label>
     <select id="marque" name="brand">
         <option value="Tesla">Tesla</option>
@@ -28,6 +29,15 @@
         <option value="Modèle Y">Modèle Y</option>
         <option value="Cybertruck">Cybertruck</option>
     </select>
+        <label for="couleur">Couleur :</label>
+        <input id="couleur" name="couleur" type="text"/>
+        <label for="autonomie">Autonomie :</label>
+        <input id="autonomie" name="autonomie" type="number"/>
+        <label for="prix">Prix: </label>
+        <input id="prix" name="prix" type="number">
+
+        <button type="submit">Ajouter</button>
+    </fieldset>
 </form>
 <textarea id="message-erreur" rows="4" cols="80" readonly></textarea>
 <script type="text/javascript" src="lib/jQuery/jquery-4.0.0.js"></script>
