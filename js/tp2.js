@@ -1,7 +1,9 @@
 // TODO 1-1 importez voituresElectriques du fichier voitures.js
 
+import { voituresElectriques} from "./voitures.js";
 
 // TODO 1-2 Créez la fonction ready
+$( function () {
 
 
 // TODO 1-3
@@ -9,6 +11,15 @@
 //  - Ajoutez l'élément tbody avec l'id = "voiture", sera utile au prochain TO-DO
 
 
+// TODO 1-3
+//  - En jQuery, ajoutez l'entête du tableau (Marque, Modèle, Année, Couleur, Autonomie et Prix) à l'élément <table id="tableau-voitures"></table>
+//  - Ajoutez l'élément tbody avec l'id = "voiture", sera utile au prochain TO-DO
+
+
+    const tableauTR = document.createElement("tr");
+    const tableauTH = document.createElement("th");
+
+    let table = document.getElementById()
 // TODO 1-4 En jQuery, ajoutez dans le tbody de la table, les tr et les td pour afficher toutes les données importées du fichier voitures.js
 //  avec un bouton "Supprimer", un bouton "Duppliquer" et un bouton "Ligne bleu" à la fin de la ligne.
 
@@ -41,3 +52,5 @@
 
 // TODO 1-10
 //  - Ajoutez une animation (autre que le shake du formatif) de votre choix avec animate lorsqu'il y a une erreur de validation
+
+})
