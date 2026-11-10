@@ -142,7 +142,8 @@ $( function () {
         if (erreurs) {
             $('#message-erreur').val(listeErreurs.join("\n"));
             ev.preventDefault();
-        } else {
+        } 
+        else {
             let tabObj = {
                 marque: data.get("brand"),
                 modele: data.get("model"),
