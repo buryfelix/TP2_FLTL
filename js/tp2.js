@@ -27,7 +27,7 @@ $( function () {
 
     const tableauTitreData = ["marque", "modele", "annee", "couleur", "autonomie", "prix"];
 
-    const tableauBody = $(document.createElement("tbody"));
+    const tableauBody = $(document.createElement("tbody")).attr("id", "voiture");
     $(`#tableau-voitures`).append(tableauBody);
 
     for (let i = 0; i < voituresElectriques.length; i++) {
